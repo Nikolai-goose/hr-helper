@@ -1,0 +1,48 @@
+@import '../../variables.scss';
+// custom checkbox
+.checkbox__input {
+    display: none;
+}
+
+.checkbox__element {
+    padding-left: 28px;
+    position: relative;
+
+    &::before {
+        border: 2px solid $light-grey;
+        border-radius: 4px;
+        content: "";
+        height: 20px;
+        left: 0px;
+        margin-top: -1px;
+        top: 50%;
+        transform: translateY(-50%);
+        transition: all 0.2s;
+        position: absolute;
+        width: 20px;
+    }
+    &:hover::before {
+        border-color: $dark-grey;
+    }
+    .checkbox__input:checked + &::before {
+        border-color: $primary;
+        background-color: $primary;
+    }
+
+    &::after {
+        border: 2px solid transparent;
+        content: "";
+        height: 8px;
+        left: 4px;
+        margin-top: -3px;
+        top: 50%;
+        transform: translateY(-50%) rotate(-45deg);
+        transition: all 0.2s;
+        position: absolute;
+        width: 13px;
+    }
+    .checkbox__input:checked + &::after {
+        border-bottom-color: white;
+        border-left-color: white;
+    }
+}
