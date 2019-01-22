@@ -7,7 +7,7 @@ export const addProject = () => {
         let project = {
             id: key,
             name: `Проект номер ${Math.floor(Math.random()*100)}`,
-            opended: true,
+            opened: true,
             vacancies: []
         };
         axios.put(`/projects/${key}.json`, project)
@@ -29,6 +29,20 @@ export const deleteProject = (id) => {
             .catch((err) => {
                 console.log(err);
             });
+    };
+};
+
+export const toggleProject = (project) => {
+    return (dispatch) => {
+        let opened = project.opened;        
+        
+        axios.put(`/projects/${project.id}/opened.json`, !opened)
+            .then(() => {
+                dispatch(fetchProjects())
+            })  
+            .catch(err => {
+                console.log(err);
+            });    
     };
 };
 

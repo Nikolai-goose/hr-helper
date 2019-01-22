@@ -5,18 +5,8 @@ import * as actions from './actions/projects'
 import ProjectsList from './componens/ProjectsList/ProjectsList';
 
 class App extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.handleDelete = this.handleDelete.bind(this);
-    };
-
     componentDidMount() {
         this.props.onProjectsFetch();
-    };
-
-    handleDelete(id) {
-        this.props.onProjectDelete(id);
     };
 
     render() {
@@ -27,7 +17,10 @@ class App extends React.Component {
                         <div className="title is-1">Список проектов</div>
                     </div>
                     <Controls onAddProject={this.props.onProjectAdd}/>
-                    <ProjectsList projects={this.props.projects} handleDelete={(id) => this.handleDelete(id)}/>
+                    <ProjectsList 
+                        projects={this.props.projects} 
+                        handleToggleProject={(project) => this.props.onToggleProject(project)}
+                        handleDelete={(id) => this.props.onProjectDelete(id)}/>
                 </div>
             </div>
         );
@@ -44,6 +37,7 @@ const mapDispatchToProps = dispatch => {
     return {
         onProjectAdd: () => dispatch(actions.addProject()),
         onProjectDelete: (id) => dispatch(actions.deleteProject(id)),
+        onToggleProject: (project) => dispatch(actions.toggleProject(project)),
         onProjectsFetch: () => dispatch(actions.fetchProjects()),
     };
 };

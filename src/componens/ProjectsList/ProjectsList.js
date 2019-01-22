@@ -5,7 +5,11 @@ import Project from './Project/Project';
 const ProjectsList = (props) => {    
     const projects = props.projects.map(project => {
         return (
-            <Project key={project.id} {...project} handleDelete={(id) => props.handleDelete(id)}/>
+            <Project 
+                key={project.id} 
+                {...project} 
+                handleToggleProject={(project) => props.handleToggleProject(project)}
+                handleDelete={(id) => props.handleDelete(id)}/>
         );
     });
 
