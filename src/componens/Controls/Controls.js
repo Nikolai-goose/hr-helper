@@ -1,7 +1,7 @@
 import React from 'react';
 import Checkbox from '../Checkbox/Checkbox';
 
-const Controls = () => {
+const Controls = (props) => {
     return (
         <div className="level">
             <div className="level-left">
@@ -14,7 +14,7 @@ const Controls = () => {
             </div>
             <div className="level-right">
                 <div className="level-item">
-                    <button className="button">Добавить проект</button>
+                    <button className="button is-primary" onClick={props.onAddProject}>Добавить проект</button>
                 </div>
             </div>
         </div>
