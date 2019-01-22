@@ -1,5 +1,6 @@
 import * as types from './types';
 import axios from '../axios';
+import Project from '../componens/ProjectsList/Project/Project';
 
 export const addProject = () => {
     return (dispatch) => {
@@ -80,6 +81,45 @@ export const fetchProjects = () => {
             })
             .catch((err) => {
                 dispatch(projectsFetchFail())
+            });
+    };
+};
+
+export const addVacancyStart = (projectId) => {
+    return {
+        type: types.VACANCY_ADD_START,
+        projectId: projectId,
+    }
+};
+export const addVacancySuccess = (vacancy, projectId) => {
+    return {
+        type: types.VACANCY_ADD_SUCCESS,
+        projectId: projectId,
+        vacancy: vacancy,
+    }
+};
+export const addVacancyFail = (projectId) => {
+    return {
+        type: types.VACANCY_ADD_FAIL,
+        projectId: projectId,
+    };
+};
+
+export const addVacancy = (projectId) => {
+    return (dispatch) => {
+        dispatch(addVacancyStart(projectId));
+        let key = Date.now() + Math.random().toString(36).substr(2, 9);
+        let vacancy = {
+            id: key,
+            name: `Вакансия номер ${Math.floor(Math.random()*100)}`,
+            opened: true,
+        };
+        axios.put(`/projects/${projectId}/vacancies/${key}.json`, vacancy)
+            .then((res) => {
+                dispatch(addVacancySuccess(res.data, projectId))   ;             
+            }).catch(err => {
+                console.log(err)
+                dispatch(addVacancyFail(projectId));
             });
     };
 };

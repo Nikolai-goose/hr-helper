@@ -9,7 +9,8 @@ const ProjectsList = (props) => {
                 key={project.id} 
                 {...project} 
                 handleToggleProject={(project) => props.handleToggleProject(project)}
-                handleDelete={(id) => props.handleDelete(id)}/>
+                handleDelete={(id) => props.handleDelete(id)}
+                handleAddVacancy={(id) => props.handleAddVacancy(id)}/>
         );
     });
 

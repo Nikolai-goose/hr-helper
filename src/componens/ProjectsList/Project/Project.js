@@ -3,7 +3,7 @@ import Vacancy from './Vacancy';
 
 const Project = (props) =>{
     let vacancies;
-    if (props.vacancies) {
+    if (props.vacancies) {      
         vacancies = props.vacancies.map(vacancy => {
             return (
                 <Vacancy {...vacancy} key={vacancy.id} />
@@ -21,7 +21,9 @@ const Project = (props) =>{
                     <div className="level-left">
                         <div className="level-item"></div>
                         <div className="level-item">
-                            <button className="button is-primary is-borderless is-bold">Добавить вакансию</button>
+                            <button 
+                                className="button is-primary is-borderless is-bold"
+                                onClick={() => props.handleAddVacancy(props.id)}>Добавить вакансию</button>
                         </div>
                     </div>
                     <div className="level-right">
