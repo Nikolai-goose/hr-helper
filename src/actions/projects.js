@@ -9,7 +9,7 @@ export const addProject = () => {
             id: key,
             name: `Проект номер ${Math.floor(Math.random()*100)}`,
             opened: true,
-            vacancies: []
+            loading: false,
         };
         axios.put(`/projects/${key}.json`, project)
             .then(() => {
@@ -113,13 +113,48 @@ export const addVacancy = (projectId) => {
             id: key,
             name: `Вакансия номер ${Math.floor(Math.random()*100)}`,
             opened: true,
+            projectId: projectId
         };
         axios.put(`/projects/${projectId}/vacancies/${key}.json`, vacancy)
             .then((res) => {
                 dispatch(addVacancySuccess(res.data, projectId))   ;             
             }).catch(err => {
-                console.log(err)
                 dispatch(addVacancyFail(projectId));
+            });
+    };
+};
+
+export const deleteVacancyStart = (id, projectId) => {
+    return {
+        type: types.VACANCY_DELETE_START,
+        id: id,
+        projectId: projectId
+    }
+}
+export const deleteVacancySuccess = (id, projectId) => {
+    return {
+        type: types.VACANCY_DELETE_SUCCESS,
+        id: id,
+        projectId: projectId
+    }
+}
+export const deleteVacancyFail = (id, projectId) => {
+    return {
+        type: types.VACANCY_DELETE_FAIL,
+        id: id,
+        projectId: projectId
+    }
+}
+
+export const deleteVacancy = (id, projectId) => {
+    return (dispatch) => {
+        dispatch(deleteVacancyStart(id, projectId));
+        axios.delete(`/projects/${projectId}/vacancies/${id}.json`)
+            .then(() => {
+                dispatch(deleteVacancySuccess(id, projectId));
+            })
+            .catch((err) => {
+                dispatch(deleteVacancyFail(id, projectId))
             });
     };
 };

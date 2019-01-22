@@ -21,7 +21,9 @@ class App extends React.Component {
                         projects={this.props.projects} 
                         handleToggleProject={(project) => this.props.onToggleProject(project)}
                         handleDelete={(id) => this.props.onProjectDelete(id)}
-                        handleAddVacancy={(id) => this.props.onAddVacancy(id)}/>
+                        handleAddVacancy={(id) => this.props.onAddVacancy(id)}
+                        handleDeleteVacancy={(id, vacancyId) => this.props.onDeleteVacancy(id, vacancyId)}
+                        />
                 </div>
             </div>
         );
@@ -41,6 +43,7 @@ const mapDispatchToProps = dispatch => {
         onToggleProject: (project) => dispatch(actions.toggleProject(project)),
         onProjectsFetch: () => dispatch(actions.fetchProjects()),
         onAddVacancy: (id) => dispatch(actions.addVacancy(id)),
+        onDeleteVacancy: (id, projectId) => dispatch(actions.deleteVacancy(id, projectId)),
     };
 };
 

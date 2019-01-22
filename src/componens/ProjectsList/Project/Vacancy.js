@@ -17,7 +17,9 @@ const Vacancy = (props) => {
                         <button className="button is-borderless is-bold">Открыть вакансию</button>
                     </div>
                     <div className="level-item">
-                        <button className="button is-borderless is-bold">Удалить</button>
+                        <button 
+                            className="button is-borderless is-bold"
+                            onClick={() => props.handleDeleteVacancy(props.id, props.projectId)}>Удалить</button>
                     </div>
                 </div>
             </div>

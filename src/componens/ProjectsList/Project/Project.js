@@ -6,7 +6,10 @@ const Project = (props) =>{
     if (props.vacancies) {      
         vacancies = props.vacancies.map(vacancy => {
             return (
-                <Vacancy {...vacancy} key={vacancy.id} />
+                <Vacancy 
+                    key={vacancy.id} 
+                    {...vacancy} 
+                    handleDeleteVacancy={(id, vacancyId) => props.handleDeleteVacancy(id, vacancyId)}/>
             );        
         });
     };

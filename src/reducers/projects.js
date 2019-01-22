@@ -30,7 +30,7 @@ const projects = (state = initialState, action) => {
             }
         case types.VACANCY_ADD_START: 
             return {
-                state,
+                ...state,
                 projects: state.projects.map(project => {
                     if (project.id == action.projectId) {
                         project.loading = true;
@@ -40,12 +40,11 @@ const projects = (state = initialState, action) => {
             }
         case types.VACANCY_ADD_SUCCESS: 
             return {
-                state,
+                ...state,
                 projects: state.projects.map(project => {
                     if (project.id == action.projectId) {
                         project.loading = false;
                         if (project.vacancies) {
-                            console.log(action.vacancy);
                             project.vacancies = project.vacancies.concat(action.vacancy);
                         } else (project.vacancies = [action.vacancy])
                     };
@@ -54,10 +53,48 @@ const projects = (state = initialState, action) => {
             }
         case types.VACANCY_ADD_FAIL: 
             return {
-                state,
+                ...state,
                 projects: state.projects.map(project => {
                     if (project.id == action.projectId) {
                         project.loading = true;
+                    };
+                    return project;
+                })
+            }
+        case types.VACANCY_DELETE_START: 
+            return {
+                ...state,
+                projects: state.projects.map(project => {
+                    if (project.id == action.projectId) {
+                        project.vacancies = project.vacancies.map(vacancy => {
+                            if (vacancy.id === action.id) vacancy.loading = true 
+                            return vacancy
+                        });
+                    };
+                    return project;
+                })
+            }
+        case types.VACANCY_DELETE_SUCCESS: 
+            return {
+                ...state,
+                projects: state.projects.map(project => {
+                    if (project.id == action.projectId) {
+                        project.loading = false;
+                        project.vacancies = project.vacancies.filter(vacancy => (vacancy.id !== action.id))
+                    };
+                    return project;
+                })
+            }
+        case types.VACANCY_DELETE_FAIL: 
+            return {
+                ...state,
+                projects: state.projects.map(project => {
+                    if (project.id == action.projectId) {
+                        project.loading = false;
+                        project.vacancies = project.vacancies.map(vacancy => {
+                            if (vacancy.id === action.id) vacancy.loading = false
+                            return vacancy 
+                        });
                     };
                     return project;
                 })
