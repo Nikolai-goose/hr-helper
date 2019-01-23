@@ -1,0 +1,42 @@
+@import '../../variables.scss';
+
+.modal-content {
+    .card {
+        border-radius: $box-radius;
+        padding: 24px;
+    }
+
+    .modal-header {
+        border-bottom: 1px solid $lighter-gray;
+        padding-bottom: 14px;
+        position: relative;
+    }
+
+    .modal-close {
+        background-color: transparent;
+        position: absolute;
+        top: 0;
+
+        &::before,
+        &::after {
+            background-color: $light-gray;
+        }
+        &:hover {
+            background-color: transparent;
+
+            &::before,
+            &::after {
+                background-color: $dark-gray;
+            }
+        }
+    }
+
+    .modal-body {
+        padding-top: 16px;
+    }
+
+    .modal-input {
+        height: 2.55rem;
+        margin-right: 6px;
+    }
+}

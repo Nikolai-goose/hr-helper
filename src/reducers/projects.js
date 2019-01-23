@@ -2,11 +2,27 @@ import * as types from '../actions/types'
 
 const initialState = {
     projects: [],
-    loading: false
+    loading: false,
+    adding: false
 };
 
 const projects = (state = initialState, action) => {
     switch (action.type) {
+        case types.PROJECTS_ADD_START: 
+            return {
+                ...state,
+                adding: true
+            }
+        case types.PROJECTS_ADD_CLOSE: 
+            return {
+                ...state,
+                adding: false
+            }
+        case types.PROJECTS_ADD_SUCCESS: 
+            return {
+                ...state,
+                adding: false
+            }
         case types.PROJECTS_FETCH_START:
             return {
                 ...state,

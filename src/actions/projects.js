@@ -1,18 +1,38 @@
 import * as types from './types';
 import axios from '../axios';
 
-export const addProject = () => {
+export const addProjectStart = () => {
+    return {
+        type: types.PROJECTS_ADD_START
+    };
+};
+
+export const addProjectClose = () => {
+    return {
+        type: types.PROJECTS_ADD_CLOSE
+    };
+};
+
+export const addProjectSuccess = () => {
+    return {
+        type: types.PROJECTS_ADD_CLOSE
+    };
+};
+
+export const addProject = (name) => {
     return (dispatch) => {
+        dispatch(addProjectSuccess());
         let key = Date.now() + Math.random().toString(36).substr(2, 9);
         let project = {
             id: key,
-            name: `Проект номер ${Math.floor(Math.random()*100)}`,
+            name: name,
             opened: true,
             active: false,
             loading: false,
         };
         axios.put(`/projects/${key}.json`, project)
             .then(() => {
+                dispatch(addProjectSuccess())
                 dispatch(fetchProjects())
             })  
             .catch(err => {

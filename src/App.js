@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Controls from './componens/Controls/Controls';
 import * as actions from './actions/projects' 
 import ProjectsList from './componens/ProjectsList/ProjectsList';
+import Modal from './componens/modal/Modal';
 
 class App extends React.Component {
     componentDidMount() {
@@ -27,6 +28,10 @@ class App extends React.Component {
                         handleToggleVacancy={(vacancy, vacancyId) => this.props.onToggleVacancy(vacancy, vacancyId)}
                         />
                 </div>
+                <Modal 
+                    show={this.props.adding}
+                    handleProjectAddClose={() => this.props.onProjectAddClose()}
+                    handleProjectAddSuccess={(name) => this.props.onProjectAddSuccess(name)}/>
             </div>
         );
     };
@@ -34,13 +39,16 @@ class App extends React.Component {
 
 const MapStateToProps = state => {
     return {
-        projects: state.projects.projects
+        projects: state.projects.projects,
+        adding: state.projects.adding
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        onProjectAdd: () => dispatch(actions.addProject()),
+        onProjectAdd: () => dispatch(actions.addProjectStart()),
+        onProjectAddClose: () => dispatch(actions.addProjectClose()),
+        onProjectAddSuccess: (name) => dispatch(actions.addProject(name)),
         onProjectDelete: (id) => dispatch(actions.deleteProject(id)),
         onToggleProject: (project) => dispatch(actions.toggleProject(project)),
         onToggleVacancies: (id) => dispatch(actions.toggleVacancies(id)),
