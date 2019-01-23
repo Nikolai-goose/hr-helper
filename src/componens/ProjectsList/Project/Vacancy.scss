@@ -1,0 +1,25 @@
+@import '../../../variables.scss';
+
+.vacancy {
+    padding-top: 24px;
+    position: relative;
+
+    &::before {
+        background-color: $lighter-gray;
+        content: "";
+        height: 1px;
+        position: absolute;
+        top: 6px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 98%;
+    }
+
+    .level:first-child {
+        margin-bottom: 0;
+    }
+
+    .vacancy__text {
+        font-size: 12px;
+    }
+}

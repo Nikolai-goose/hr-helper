@@ -9,7 +9,7 @@
     position: relative;
 
     &::before {
-        border: 2px solid $light-grey;
+        border: 2px solid $light-gray;
         border-radius: 4px;
         content: "";
         height: 20px;
@@ -22,7 +22,7 @@
         width: 20px;
     }
     &:hover::before {
-        border-color: $dark-grey;
+        border-color: $dark-gray;
     }
     .checkbox__input:checked + &::before {
         border-color: $primary;

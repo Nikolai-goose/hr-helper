@@ -14,11 +14,12 @@ class App extends React.Component {
             <div className="wrapper">
                 <div className="container">
                     <div className="level">
-                        <div className="title is-1">Список проектов</div>
+                        <div className="title title-main">Список проектов</div>
                     </div>
                     <Controls onAddProject={this.props.onProjectAdd}/>
                     <ProjectsList 
                         projects={this.props.projects} 
+                        handleToggleVacancies={(id) => this.props.onToggleVacancies(id)}
                         handleToggleProject={(project) => this.props.onToggleProject(project)}
                         handleDelete={(id) => this.props.onProjectDelete(id)}
                         handleAddVacancy={(id) => this.props.onAddVacancy(id)}
@@ -42,6 +43,7 @@ const mapDispatchToProps = dispatch => {
         onProjectAdd: () => dispatch(actions.addProject()),
         onProjectDelete: (id) => dispatch(actions.deleteProject(id)),
         onToggleProject: (project) => dispatch(actions.toggleProject(project)),
+        onToggleVacancies: (id) => dispatch(actions.toggleVacancies(id)),
         onProjectsFetch: () => dispatch(actions.fetchProjects()),
         onAddVacancy: (id) => dispatch(actions.addVacancy(id)),
         onDeleteVacancy: (id, projectId) => dispatch(actions.deleteVacancy(id, projectId)),

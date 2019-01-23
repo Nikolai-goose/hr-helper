@@ -1,0 +1,40 @@
+@import '../../../variables.scss';
+
+.project {
+    padding: 1rem 1.25rem 0.75rem;
+
+    &.is-active {
+        box-shadow: $box-active-shadow;
+    }
+
+    &.is-closed {
+        color: $box-disabled-text-color
+    }
+
+    &__header {
+        .level:first-child {
+            margin-bottom: 0;
+        }
+        .level-controls .level-item {
+            height: 36px;
+        }
+    }
+    
+    &__title {
+        font-size: 24px;
+        line-height: 1.4;
+    }
+
+    &__text {
+        line-height: 37px;
+    }
+
+    .vacancies {
+        max-height: 0px;
+        overflow-y: hidden;
+    }
+    &.is-active .vacancies {
+        max-height: 252px;
+        overflow-y: auto;
+    }
+}

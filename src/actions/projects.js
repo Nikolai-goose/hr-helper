@@ -1,6 +1,5 @@
 import * as types from './types';
 import axios from '../axios';
-import Project from '../componens/ProjectsList/Project/Project';
 
 export const addProject = () => {
     return (dispatch) => {
@@ -9,6 +8,7 @@ export const addProject = () => {
             id: key,
             name: `Проект номер ${Math.floor(Math.random()*100)}`,
             opened: true,
+            active: false,
             loading: false,
         };
         axios.put(`/projects/${key}.json`, project)
@@ -44,6 +44,13 @@ export const toggleProject = (project) => {
             .catch(err => {
                 console.log(err);
             });    
+    };
+};
+
+export const toggleVacancies = (id) => {
+    return {
+        type: types.PROJECTS_TOGGLE_VACANCIES,
+        id: id
     };
 };
 

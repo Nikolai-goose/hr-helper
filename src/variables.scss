@@ -1,7 +1,16 @@
 // variables
-$light-grey: #989898;
-$grey: #808080;
-$dark-grey: #686868;
+$light-gray: #a1a1a1;
+$lighter-gray: #e0e0e0;
+$gray: #808080;
+$dark-gray: #6e6e6e;
 $dark: #1f1f1f;
 
 $primary: #00aa87;
+$box-radius: 3px;
+$box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12), 
+             0 0 2px 0 rgba(0, 0, 0, 0.12);
+$box-active-shadow:  0 8px 8px 0 rgba(0, 0, 0, 0.12), 
+                     0 0 8px 0 rgba(0, 0, 0, 0.12);
+$box-disabled-text-color: rgba(0, 0, 0, 0.57);
+$button-padding-horizontal: 22px;
+$button-focus-border-color: transparent;

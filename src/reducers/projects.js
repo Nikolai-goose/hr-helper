@@ -38,6 +38,16 @@ const projects = (state = initialState, action) => {
                     return project;
                 })
             }
+        case types.PROJECTS_TOGGLE_VACANCIES: 
+            return{
+                ...state,
+                projects: state.projects.map(project => {
+                    if (project.id == action.id) {
+                        project.active = !project.active;
+                    };
+                    return project
+                })
+            }
         case types.VACANCY_ADD_SUCCESS: 
             return {
                 ...state,

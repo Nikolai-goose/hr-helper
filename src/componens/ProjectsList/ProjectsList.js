@@ -8,6 +8,7 @@ const ProjectsList = (props) => {
             <Project 
                 key={project.id} 
                 {...project} 
+                handleToggleVacancies={(id) => props.handleToggleVacancies(id)}
                 handleToggleProject={(project) => props.handleToggleProject(project)}
                 handleDelete={(id) => props.handleDelete(id)}
                 handleAddVacancy={(id) => props.handleAddVacancy(id)}
