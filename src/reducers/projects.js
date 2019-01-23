@@ -99,6 +99,50 @@ const projects = (state = initialState, action) => {
                     return project;
                 })
             }
+        case types.VACANCY_TOGGLE_START: 
+            return {
+                ...state,
+                projects: state.projects.map(project => {
+                    if (project.id == action.projectId) {
+                        project.vacancies = project.vacancies.map(vacancy => {
+                            if (vacancy.id === action.id) vacancy.loading = true 
+                            return vacancy
+                        });
+                    };
+                    return project;
+                })
+            }
+        case types.VACANCY_TOGGLE_SUCCESS: 
+            return {
+                ...state,
+                projects: state.projects.map(project => {
+                    if (project.id == action.projectId) {
+                        project.loading = false;
+                        project.vacancies = project.vacancies.map(vacancy => {
+                            if (vacancy.id === action.id) {
+                                vacancy.opened = action.opened;
+                                vacancy.loading = false;
+                            };
+                            return vacancy;
+                        });
+                    };
+                    return project;
+                })
+            }
+        case types.VACANCY_TOGGLE_FAIL: 
+            return {
+                ...state,
+                projects: state.projects.map(project => {
+                    if (project.id == action.projectId) {
+                        project.loading = false;
+                        project.vacancies = project.vacancies.map(vacancy => {
+                            if (vacancy.id === action.id) vacancy.loading = false
+                            return vacancy 
+                        });
+                    };
+                    return project;
+                })
+            }
         default: 
             return {
                 ...state

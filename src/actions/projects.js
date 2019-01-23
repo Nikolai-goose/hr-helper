@@ -129,22 +129,24 @@ export const deleteVacancyStart = (id, projectId) => {
         type: types.VACANCY_DELETE_START,
         id: id,
         projectId: projectId
-    }
-}
+    };
+};
+
 export const deleteVacancySuccess = (id, projectId) => {
     return {
         type: types.VACANCY_DELETE_SUCCESS,
         id: id,
         projectId: projectId
-    }
-}
+    };
+};
+
 export const deleteVacancyFail = (id, projectId) => {
     return {
         type: types.VACANCY_DELETE_FAIL,
         id: id,
         projectId: projectId
-    }
-}
+    };
+};
 
 export const deleteVacancy = (id, projectId) => {
     return (dispatch) => {
@@ -155,6 +157,48 @@ export const deleteVacancy = (id, projectId) => {
             })
             .catch((err) => {
                 dispatch(deleteVacancyFail(id, projectId))
+            });
+    };
+};
+
+export const toggleVacancyStart = (id, projectId) => {
+    return {
+        type: types.VACANCY_TOGGLE_START,
+        id: id,
+        projectId: projectId
+    };
+};
+
+export const toggleVacancySuccess = (id, opened, projectId) => {
+    return {
+        type: types.VACANCY_TOGGLE_SUCCESS,
+        id: id,
+        opened: opened,
+        projectId: projectId
+    };
+};
+
+export const toggleVacancyFail = (id, projectId) => {
+    return {
+        type: types.VACANCY_TOGGLE_FAIL,
+        id: id,
+        projectId: projectId
+    };
+};
+
+export const toggleVacancy = (vacancy, projectId) => {
+    return (dispatch) => {
+        let id = vacancy.id;
+        let opened = vacancy.opened
+        dispatch(toggleVacancyStart(id, projectId));
+        axios.put(`/projects/${projectId}/vacancies/${id}/opened.json`, !opened)
+            .then((res) => {
+                dispatch(toggleVacancySuccess(id, res.data, projectId));
+            })
+            .catch((err) => {
+                console.log(err);
+                
+                dispatch(toggleVacancyFail(id, projectId))
             });
     };
 };

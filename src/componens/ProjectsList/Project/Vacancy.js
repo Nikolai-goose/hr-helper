@@ -14,7 +14,9 @@ const Vacancy = (props) => {
                 </div>
                 <div className="level-right">
                     <div className="level-item">
-                        <button className="button is-borderless is-bold">Открыть вакансию</button>
+                        <button 
+                            className={`button is-borderless is-bold ${props.opened ? "" : "is-primary"}`}
+                            onClick={() => props.handleToggleVacancy(props, props.projectId)}>{props.opened ? "Закрыть" : "Открыть"} вакансию</button>
                     </div>
                     <div className="level-item">
                         <button 

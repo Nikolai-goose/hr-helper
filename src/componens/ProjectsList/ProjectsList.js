@@ -11,7 +11,8 @@ const ProjectsList = (props) => {
                 handleToggleProject={(project) => props.handleToggleProject(project)}
                 handleDelete={(id) => props.handleDelete(id)}
                 handleAddVacancy={(id) => props.handleAddVacancy(id)}
-                handleDeleteVacancy={(id, vacancyId) => props.handleDeleteVacancy(id, vacancyId)}/>
+                handleDeleteVacancy={(id, vacancyId) => props.handleDeleteVacancy(id, vacancyId)}
+                handleToggleVacancy={(vacancy, vacancyId) => props.handleToggleVacancy(vacancy, vacancyId)}/>
         );
     });
 

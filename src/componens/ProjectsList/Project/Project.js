@@ -9,7 +9,8 @@ const Project = (props) =>{
                 <Vacancy 
                     key={vacancy.id} 
                     {...vacancy} 
-                    handleDeleteVacancy={(id, vacancyId) => props.handleDeleteVacancy(id, vacancyId)}/>
+                    handleDeleteVacancy={(id, vacancyId) => props.handleDeleteVacancy(id, vacancyId)}
+                    handleToggleVacancy={(vacancy, vacancyId) => props.handleToggleVacancy(vacancy, vacancyId)}/>
             );        
         });
     };
